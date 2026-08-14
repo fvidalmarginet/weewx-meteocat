@@ -1,0 +1,78 @@
+{
+    "location": "Barcelona",
+    "updatedAt": "Actualitzat avui a les 00:19",
+    "forecast": [
+        {
+            "dayName": "AVUI",
+            "date": "Divendres, 14 d'agost",
+            "iconClass": "wi-day-sunny",
+            "maxTemp": 31,
+            "minTemp": 23,
+            "description": "Assolellat",
+            "rainPercent": 4
+        },
+        {
+            "dayName": "DISSABTE",
+            "date": "15 d'agost",
+            "iconClass": "wi-cloudy",
+            "maxTemp": 30,
+            "minTemp": 22,
+            "description": "Interval de núvols",
+            "rainPercent": 14
+        },
+        {
+            "dayName": "DIUMENGE",
+            "date": "16 d'agost",
+            "iconClass": "wi-cloudy",
+            "maxTemp": 29,
+            "minTemp": 22,
+            "description": "Interval de núvols",
+            "rainPercent": 23
+        },
+        {
+            "dayName": "DILLUNS",
+            "date": "17 d'agost",
+            "iconClass": "wi-cloudy",
+            "maxTemp": 29,
+            "minTemp": 22,
+            "description": "Interval de núvols",
+            "rainPercent": 22
+        },
+        {
+            "dayName": "DIMARTS",
+            "date": "18 d'agost",
+            "iconClass": "wi-cloudy",
+            "maxTemp": 29,
+            "minTemp": 22,
+            "description": "Interval de núvols",
+            "rainPercent": 8
+        },
+        {
+            "dayName": "DIMECRES",
+            "date": "19 d'agost",
+            "iconClass": "wi-cloudy",
+            "maxTemp": 29,
+            "minTemp": 22,
+            "description": "Interval de núvols",
+            "rainPercent": 14
+        },
+        {
+            "dayName": "DIJOUS",
+            "date": "20 d'agost",
+            "iconClass": "wi-cloudy",
+            "maxTemp": 29,
+            "minTemp": 22,
+            "description": "Interval de núvols",
+            "rainPercent": 33
+        },
+        {
+            "dayName": "DIVENDRES",
+            "date": "21 d'agost",
+            "iconClass": "wi-day-sunny",
+            "maxTemp": 28,
+            "minTemp": 20,
+            "description": "Assolellat",
+            "rainPercent": 42
+        }
+    ]
+}

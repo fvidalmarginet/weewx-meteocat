@@ -15,219 +15,73 @@
 <div class="weather-widget">
 
     <div class="widget-header">
-        <div>
-            <div class="widget-title">Predicció meteorològica</div>
-            <div class="widget-location">Barcelona · Congrés i els Indians</div>
-        </div>
-
         <div class="widget-source">
             Meteocat
         </div>
     </div>
 
 
-    <div class="forecast">
-
-        <!-- AVUI -->
-        <article class="day-card today">
-
-            <div class="day-name">AVUI</div>
-            <div class="date">Diumenge, 9 d'agost</div>
-
-            <div class="weather-icon"><i class="wi wi-day-sunny"></i></div>
-
-            <div class="temperature">
-                <span class="max">31°</span>
-                <span class="min">22°</span>
-            </div>
-
-            <div class="description">
-                Assolellat
-            </div>
-
-            <div class="rain">
-                <i class="wi wi-raindrop"></i> 5%
-            </div>
-
-        </article>
-
-
-        <!-- DILLUNS -->
-        <article class="day-card">
-
-            <div class="day-name">DILLUNS</div>
-            <div class="date">10 d'agost</div>
-
-            <div class="weather-icon"><i class="wi wi-day-cloudy"></i></div>
-
-            <div class="temperature">
-                <span class="max">30°</span>
-                <span class="min">22°</span>
-            </div>
-
-            <div class="description">
-                Sol i núvols
-            </div>
-
-            <div class="rain">
-                <i class="wi wi-raindrop"></i> 10%
-            </div>
-
-        </article>
-
-
-        <!-- DIMARTS -->
-        <article class="day-card">
-
-            <div class="day-name">DIMARTS</div>
-            <div class="date">11 d'agost</div>
-
-            <div class="weather-icon"><i class="wi wi-cloudy"></i></div>
-
-            <div class="temperature">
-                <span class="max">29°</span>
-                <span class="min">21°</span>
-            </div>
-
-            <div class="description">
-                Interval de núvols
-            </div>
-
-            <div class="rain">
-                <i class="wi wi-raindrop"></i> 20%
-            </div>
-
-        </article>
-
-
-        <!-- DIMECRES -->
-        <article class="day-card">
-
-            <div class="day-name">DIMECRES</div>
-            <div class="date">12 d'agost</div>
-
-            <div class="weather-icon"><i class="wi wi-day-showers"></i></div>
-
-            <div class="temperature">
-                <span class="max">28°</span>
-                <span class="min">21°</span>
-            </div>
-
-            <div class="description">
-                Ruixats
-            </div>
-
-            <div class="rain">
-                <i class="wi wi-raindrop"></i> 45%
-            </div>
-
-        </article>
-
-
-        <!-- DIJOUS -->
-        <article class="day-card">
-
-            <div class="day-name">DIJOUS</div>
-            <div class="date">13 d'agost</div>
-
-            <div class="weather-icon"><i class="wi wi-day-sunny-overcast"></i></div>
-
-            <div class="temperature">
-                <span class="max">29°</span>
-                <span class="min">20°</span>
-            </div>
-
-            <div class="description">
-                Variable
-            </div>
-
-            <div class="rain">
-                <i class="wi wi-raindrop"></i> 20%
-            </div>
-
-        </article>
-
-
-        <!-- DIVENDRES -->
-        <article class="day-card">
-
-            <div class="day-name">DIVENDRES</div>
-            <div class="date">14 d'agost</div>
-
-            <div class="weather-icon"><i class="wi wi-day-sunny"></i></div>
-
-            <div class="temperature">
-                <span class="max">31°</span>
-                <span class="min">21°</span>
-            </div>
-
-            <div class="description">
-                Assolellat
-            </div>
-
-            <div class="rain">
-                <i class="wi wi-raindrop"></i> 5%
-            </div>
-
-        </article>
-
-
-        <!-- DISSABTE -->
-        <article class="day-card">
-
-            <div class="day-name">DISSABTE</div>
-            <div class="date">15 d'agost</div>
-
-            <div class="weather-icon"><i class="wi wi-day-sunny"></i></div>
-
-            <div class="temperature">
-                <span class="max">32°</span>
-                <span class="min">22°</span>
-            </div>
-
-            <div class="description">
-                Assolellat
-            </div>
-
-            <div class="rain">
-                <i class="wi wi-raindrop"></i> 5%
-            </div>
-
-        </article>
-
-
-        <!-- DIUMENGE -->
-        <article class="day-card">
-
-            <div class="day-name">DIUMENGE</div>
-            <div class="date">16 d'agost</div>
-
-            <div class="weather-icon"><i class="wi wi-day-cloudy"></i></div>
-
-            <div class="temperature">
-                <span class="max">30°</span>
-                <span class="min">22°</span>
-            </div>
-
-            <div class="description">
-                Sol i núvols
-            </div>
-
-            <div class="rain">
-                <i class="wi wi-raindrop"></i> 10%
-            </div>
-
-        </article>
-
+    <div class="forecast" id="forecast-container">
+        <!-- El contingut es carregarà dinàmicament des de forecast.json -->
     </div>
 
 
     <div class="widget-footer">
-        <span>Predicció per als propers 8 dies</span>
-        <span>Actualitzat avui a les 08:00</span>
+        <span id="updated-at">Actualitzat avui a les 08:00</span>
     </div>
 
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const forecastContainer = document.getElementById("forecast-container");
+        const locationElement = document.getElementById("widget-location");
+        const updatedAtElement = document.getElementById("updated-at");
+
+        fetch("forecast.json")
+            .then(response => {
+                if (!response.ok) throw new Error("No s'ha pogut carregar la predicció.");
+                return response.json();
+            })
+            .then(data => {
+                if (data.location && locationElement) {
+                    locationElement.textContent = data.location;
+                }
+                if (data.updatedAt && updatedAtElement) {
+                    updatedAtElement.textContent = data.updatedAt;
+                }
+                
+                if (data.forecast && forecastContainer) {
+                    forecastContainer.innerHTML = data.forecast.map(item => `
+                        <article class="day-card${item.dayName === 'AVUI' ? ' today' : ''}">
+                            <div class="day-name">${item.dayName}</div>
+                            <div class="date">${item.date}</div>
+                            <div class="weather-icon"><i class="wi ${item.iconClass}"></i></div>
+                            <div class="temperature">
+                                <span class="max">${item.maxTemp}°</span>
+                                <span class="min">${item.minTemp}°</span>
+                            </div>
+                            <div class="description">${item.description}</div>
+                            <div class="rain">
+                                <i class="wi wi-raindrop"></i> ${item.rainPercent}%
+                            </div>
+                        </article>
+                    `).join("");
+                }
+            })
+            .catch(error => {
+                console.error(error);
+                if (forecastContainer) {
+                    forecastContainer.innerHTML = `
+                        <div style="grid-column: 1 / -1; padding: 40px; text-align: center; color: #71808c; font-size: 14px; width: 100%;">
+                            <i class="wi wi-rain-mix" style="font-size: 32px; display: block; margin-bottom: 10px; color: #e74c3c;"></i>
+                            No s'ha pogut carregar la previsió meteorològica en aquest moment.
+                        </div>
+                    `;
+                }
+            });
+    });
+</script>
 
 </body>
 </html>
