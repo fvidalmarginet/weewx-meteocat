@@ -1,0 +1,327 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family:
+        "Open Sans",
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background: transparent;
+    color: #2c3e50;
+}
+
+
+.weather-widget {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    background: #ffffff;
+
+    border: 1px solid #e1e6ea;
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+
+/* CAPÇALERA */
+
+.widget-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 16px 20px;
+
+    background: #f7f9fa;
+
+    border-bottom: 1px solid #e5e9ec;
+}
+
+.widget-title {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.widget-location {
+    margin-top: 3px;
+
+    font-size: 13px;
+    color: #71808c;
+}
+
+.widget-source {
+    font-size: 12px;
+    font-weight: 600;
+
+    color: #71808c;
+}
+
+
+/* PREVISIONS */
+
+.forecast {
+    display: grid;
+
+    grid-template-columns:
+        repeat(8, minmax(0, 1fr));
+
+    width: 100%;
+}
+
+
+.day-card {
+    min-width: 0;
+
+    padding: 16px 8px 18px;
+
+    text-align: center;
+
+    border-right: 1px solid #edf0f2;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.day-card:last-child {
+    border-right: 0;
+}
+
+.day-card:hover {
+    background: #f8fafb;
+}
+
+
+/* AVUI */
+
+.day-card.today {
+    background: #f3f8fc;
+}
+
+.day-card.today .day-name {
+    color: #1674a8;
+}
+
+
+/* DIA */
+
+.day-name {
+    font-size: 12px;
+    font-weight: 700;
+
+    letter-spacing: 0.4px;
+
+    color: #44515c;
+}
+
+.date {
+    margin-top: 4px;
+
+    font-size: 11px;
+
+    color: #8a969f;
+
+    white-space: nowrap;
+}
+
+
+/* ICONA */
+
+.weather-icon {
+    margin: 15px 0 12px;
+
+    font-size: 38px;
+
+    line-height: 1;
+}
+
+.weather-icon .wi {
+    /* Base color in case we add more */
+    transition: color 0.2s ease;
+}
+
+.weather-icon .wi-day-sunny {
+    color: #ffb300;
+}
+
+.weather-icon .wi-day-cloudy {
+    color: #71808c;
+}
+
+.weather-icon .wi-cloudy {
+    color: #71808c;
+}
+
+.weather-icon .wi-day-showers {
+    color: #4c9ac2;
+}
+
+.weather-icon .wi-day-sunny-overcast {
+    color: #71808c;
+}
+
+
+/* TEMPERATURE */
+
+.temperature {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+
+    gap: 7px;
+}
+
+.max {
+    font-size: 23px;
+    font-weight: 700;
+
+    color: #2c3e50;
+}
+
+.min {
+    font-size: 15px;
+
+    color: #8a969f;
+}
+
+
+/* DESCRIPCIÓ */
+
+.description {
+    min-height: 32px;
+
+    margin-top: 7px;
+
+    font-size: 11px;
+
+    line-height: 1.4;
+
+    color: #687681;
+}
+
+
+/* PLUJA */
+
+.rain {
+    margin-top: 9px;
+
+    font-size: 11px;
+
+    color: #4c9ac2;
+}
+
+.rain span {
+    font-size: 10px;
+}
+
+.rain .wi {
+    font-size: 12px;
+    margin-right: 2px;
+}
+
+
+/* PEU */
+
+.widget-footer {
+    display: flex;
+    justify-content: space-between;
+
+    padding: 9px 16px;
+
+    font-size: 10px;
+
+    color: #8a969f;
+
+    background: #fafbfc;
+
+    border-top: 1px solid #edf0f2;
+}
+
+
+/* TABLET */
+
+@media (max-width: 900px) {
+
+    .forecast {
+        grid-template-columns:
+            repeat(4, minmax(0, 1fr));
+    }
+
+    .day-card:nth-child(4) {
+        border-right: 0;
+    }
+
+    .day-card:nth-child(-n+4) {
+        border-bottom: 1px solid #edf0f2;
+    }
+
+    .day-card:nth-child(5) {
+        border-right: 1px solid #edf0f2;
+    }
+
+}
+
+
+/* MÒBIL */
+
+@media (max-width: 600px) {
+
+    .widget-header {
+        padding: 13px 15px;
+    }
+
+    .widget-title {
+        font-size: 16px;
+    }
+
+    .widget-location {
+        font-size: 11px;
+    }
+
+    .widget-source {
+        display: none;
+    }
+
+    .forecast {
+        display: flex;
+
+        overflow-x: auto;
+
+        scroll-snap-type: x mandatory;
+
+        scrollbar-width: thin;
+    }
+
+    .day-card {
+        flex: 0 0 125px;
+
+        scroll-snap-align: start;
+
+        border-right: 1px solid #edf0f2 !important;
+        border-bottom: 0 !important;
+    }
+
+    .weather-icon {
+        font-size: 34px;
+    }
+
+    .widget-footer {
+        gap: 10px;
+
+        flex-direction: column;
+    }
+}
