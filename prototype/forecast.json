@@ -1,10 +1,10 @@
 {
     "location": "Barcelona",
-    "updatedAt": "Actualitzat avui a les 00:19",
+    "updatedAt": "Actualitzat avui a les 00:34",
     "forecast": [
         {
-            "dayName": "AVUI",
-            "date": "Divendres, 14 d'agost",
+            "dayName": "DIVENDRES",
+            "date": "14 d'agost",
             "iconClass": "wi-day-sunny",
             "maxTemp": 31,
             "minTemp": 23,
@@ -12,8 +12,8 @@
             "rainPercent": 4
         },
         {
-            "dayName": "DISSABTE",
-            "date": "15 d'agost",
+            "dayName": "AVUI",
+            "date": "Dissabte, 15 d'agost",
             "iconClass": "wi-cloudy",
             "maxTemp": 30,
             "minTemp": 22,
@@ -21,7 +21,7 @@
             "rainPercent": 14
         },
         {
-            "dayName": "DIUMENGE",
+            "dayName": "DEMÀ",
             "date": "16 d'agost",
             "iconClass": "wi-cloudy",
             "maxTemp": 29,

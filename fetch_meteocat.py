@@ -11,7 +11,7 @@ No té dependències externes (només llibreries estàndard de Python) per ser u
 import os
 import json
 import argparse
-from datetime import datetime
+from datetime import datetime, timedelta
 import urllib.request
 import urllib.error
 
@@ -156,11 +156,18 @@ def parse_meteocat_response(api_data, municipi_nom=None):
                 dia_dt = datetime.fromordinal(avui.toordinal() + idx)
         else:
             dia_dt = datetime.fromordinal(avui.toordinal() + idx)
-            
-        # Determinar el nom del dia i la data formatada
-        if idx == 0:
+
+        # La data real del sistema és la que determina si el dia és AVUI/DEMÀ/nom del dia.
+        # L'API pot retornar encara el darrer dia de la predicció fins a la propera actualització.
+        dia_reial = dia_dt.date()
+        avui_date = avui.date()
+
+        if dia_reial == avui_date:
             day_name = "AVUI"
             date_str = format_catalan_date(dia_dt, include_weekday=True)
+        elif dia_reial == avui_date + timedelta(days=1):
+            day_name = "DEMÀ"
+            date_str = format_catalan_date(dia_dt, include_weekday=False)
         else:
             day_name = DIES_SETMANA[dia_dt.weekday()].upper()
             date_str = format_catalan_date(dia_dt, include_weekday=False)
