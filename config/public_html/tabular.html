@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>WeeWX station</title>
+    <link rel="icon" type="image/png" href="favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="seasons.css"/>
+    <script type="text/javascript" src="seasons.js"></script>
+    <style>
+.tabular {
+  font-family: monospace;
+  white-space: pre;
+}
+    </style>
+  </head>
+
+  <body onload="setup();">
+
+
+<div id="title_bar">
+  <div id="title">
+    <h1 class="page_title">WeeWX station</h1>
+    <p class="lastupdate">08/16/26 21:35:00</p>
+  </div>
+  <div id="rss_link"><a href="rss.xml">RSS</a></div>
+  <div id="reports">
+    Monthly Reports:
+    <select name="reports" onchange="openTabularFile(value)">
+      <option value="2026-08">2026-08</option>
+      <option selected>- Select Month -</option>
+    </select>
+    <br/>
+    Yearly Reports:
+    <select name="reports" onchange="openTabularFile(value)">
+      <option value="2026">2026</option>
+      <option selected>- Select Year -</option>
+    </select>
+    <br/>
+  </div>
+</div>
+    
+    <div id="contents">
+      <p><a href="index.html">&#10096; Current Conditions</a></p>
+      <div id="report" class="tabular"></div>
+    </div>
+
+  </body>
+  <script>
+load_file('report', 'report');
+  </script>
+</html>

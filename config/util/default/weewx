@@ -1,0 +1,10 @@
+# WeeWX parameters that are used in startup and init scripts
+WEEWX_PYTHON=/opt/weewx-venv/bin/python3
+WEEWX_PYTHON_ARGS=
+WEEWX_BINDIR=/opt/weewx-venv/lib/python3.11/site-packages
+WEEWX_CFGDIR=/app/config
+WEEWX_RUNDIR=/app/config
+WEEWX_USER=root
+WEEWX_GROUP=root
+WEEWX_INSTANCES="weewx"
+WEEWX_CFG=weewx.conf

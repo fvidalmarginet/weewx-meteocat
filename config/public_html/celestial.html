@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>WeeWX station Celestial Details</title>
+    <link rel="icon" type="image/png" href="favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="seasons.css"/>
+    <script src="seasons.js"></script>
+    <style>
+#celestial_widget th {
+  font-weight: normal;
+  text-align: right;
+}
+#celestial_widget .widget_title {
+  margin-bottom: 25px;
+}
+#celestial_widget .label {
+  font-size: 100%;
+}
+#celestial_widget .data {
+  font-size: 100%;
+}
+    </style>
+  </head>
+
+  <body>
+
+
+<div id="title_bar">
+  <div id="title">
+    <h1 class="page_title">WeeWX station</h1>
+    <p class="lastupdate">08/16/26 21:35:00</p>
+  </div>
+  <div id="rss_link"><a href="rss.xml">RSS</a></div>
+  <div id="reports">
+    Monthly Reports:
+    <select name="reports" onchange="openTabularFile(value)">
+      <option value="2026-08">2026-08</option>
+      <option selected>- Select Month -</option>
+    </select>
+    <br/>
+    Yearly Reports:
+    <select name="reports" onchange="openTabularFile(value)">
+      <option value="2026">2026</option>
+      <option selected>- Select Year -</option>
+    </select>
+    <br/>
+  </div>
+</div>
+    
+    <div id="contents">
+      <p><a href="index.html">&#10096; Current Conditions</a></p>
+
+      <div id="widget_group">
+
+
+
+<div id="celestial_widget" class="widget">
+  <div class="widget_title">
+    Celestial
+  </div>
+  <div class="widget_contents">
+    <div id="celestial_details">
+      <div class="celestial_body">
+        <table class="celestial">
+          <tr><th>&#9728; Sun</th><th></th></tr>
+          <tr>
+            <td class="label">Start civil twilight</td>
+            <td class="data">05:38:59</td>
+          </tr>
+          <tr>
+            <td class="label">Rise</td>
+            <td class="data">06:00:28</td>
+          </tr>
+          <tr>
+            <td class="label">Transit</td>
+            <td class="data">12:04:18</td>
+          </tr>
+          <tr>
+            <td class="label">Set</td>
+            <td class="data">18:08:07</td>
+          </tr>
+          <tr>
+            <td class="label">End civil twilight</td>
+            <td class="data">18:29:35</td>
+          </tr>
+          <tr>
+            <td class="label">Azimuth</td>
+            <td class="data">291.6&#176;</td>
+          </tr>
+          <tr>
+            <td class="label">Altitude</td>
+            <td class="data">-50.7&#176;</td>
+          </tr>
+          <tr>
+            <td class="label">Right ascension</td>
+            <td class="data">146.3&#176;</td>
+          </tr>
+          <tr>
+            <td class="label">Declination</td>
+            <td class="data">13.5&#176;</td>
+          </tr>
+            <tr>
+              <td class="label">Equinox</td>
+              <td class="data">09/23/26 00:05:09</td>
+            </tr>
+            <tr>
+              <td class="label">Solstice</td>
+              <td class="data">12/21/26 20:49:59</td>
+            </tr>
+          <tr>
+            <td class="label">Total daylight</td>
+            <td class="data">12 hours, 7 minutes, 38 seconds<br/>0 minutes, 0 seconds less than yesterday</td>
+          </tr>
+        </table>
+      </div>
+      <div class="celestial_body">
+        <table class="celestial">
+          <tr><th>&#9789; Moon</th><th></th></tr>
+          <tr><td class="label">&nbsp;</td><td class="data">&nbsp;</td></tr>
+          <tr>
+            <td class="label">Rise</td>
+            <td class="data">08:53:16</td>
+          </tr>
+          <tr>
+            <td class="label">Transit</td>
+            <td class="data">15:04:20</td>
+          </tr>
+          <tr>
+            <td class="label">Set</td>
+            <td class="data">21:15:25</td>
+          </tr>
+          <tr><td class="label">&nbsp;</td><td class="data">&nbsp;</td></tr>
+          <tr>
+            <td class="label">Azimuth</td>
+            <td class="data">259.6&#176;</td>
+          </tr>
+          <tr>
+            <td class="label">Altitude</td>
+            <td class="data">-5.3&#176;</td>
+          </tr>
+          <tr>
+            <td class="label">Right ascension</td>
+            <td class="data">193.3&#176;</td>
+          </tr>
+          <tr>
+            <td class="label">Declination</td>
+            <td class="data">-10.3&#176;</td>
+          </tr>
+            <tr>
+              <td class="label">Full moon</td>
+              <td class="data">08/28/26 04:18:26</td>
+            </tr>
+            <tr>
+              <td class="label">New moon</td>
+              <td class="data">09/11/26 03:26:55</td>
+            </tr>
+          <tr>
+            <td class="label">Phase</td>
+            <td class="data">Waxing crescent<br/>
+              20% full</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+      </div>
+
+
+<div id='identifier_widget' class="widget">
+  <div class="widget_title">
+  </div>
+  <div class="widget_contents">
+  <table>
+    <tr>
+      <td class="label">Latitude</td>
+      <td class="data">00&deg; 00.00' N</td>
+    </tr>
+    <tr>
+      <td class="label">Longitude</td>
+      <td class="data">000&deg; 00.00' E</td>
+    </tr>
+    <tr>
+      <td class="label">Altitude</td>
+      <td class="data">0 feet</td>
+    </tr>
+    <tr>
+      <td class="label">WeeWX</td>
+      <td class="data">5.5.0</td>
+    </tr>
+  </table>
+  </div>
+
+</div>
+    </div>
+
+  </body>
+</html>
