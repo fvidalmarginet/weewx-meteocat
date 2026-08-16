@@ -8,3 +8,9 @@ __pycache__/
 # Cache de WeeWX
 *.json
 !tests/mock_response.json
+
+output/
+config/meteocat_cache.json
+config/weewx.sdb
+__pycache__/
+*.pyc

@@ -10,44 +10,44 @@
     <link></link>
     <description>Current conditions, and daily, monthly, and yearly summaries</description>
     <language>"en"</language>
-    <pubDate>Sun, 16 Aug 2026 21:35:00 UTC</pubDate>
+    <pubDate>Sun, 16 Aug 2026 22:54:00 UTC</pubDate>
 
-    <lastBuildDate>Sun, 16 Aug 2026 21:35:00 UTC</lastBuildDate>
+    <lastBuildDate>Sun, 16 Aug 2026 22:54:00 UTC</lastBuildDate>
     <docs>http://blogs.law.harvard.edu/tech/rss</docs>
     <generator>weewx 5.5.0</generator>
-    <ttl>5.0 minutes</ttl>
+    <ttl>0.1 minutes</ttl>
 
     <item>
-      <title>Weather Conditions at 08/16/26 21:35:00</title>
+      <title>Weather Conditions at 08/16/26 22:54:00</title>
       <link></link>
       <description>
-        Outside Temperature: 32.7&#176;F;
+        Outside Temperature: 32.6&#176;F;
         Inside Temperature: 63.0&#176;F;
         Barometer: 31.100 inHg;
         Wind: 0 mph from 360&#176;;
         Rain: 0.00 in;
         Rain Rate: 0.00 in/h;
-        Wind Chill: 32.7&#176;F;
-        Heat Index: 32.7&#176;F;
-        Dew Point: 27.2&#176;F;
+        Wind Chill: 32.6&#176;F;
+        Heat Index: 32.6&#176;F;
+        Dew Point: 27.1&#176;F;
         Outside Humidity: 80%;
         Inside Humidity: 30%;
       </description>
-      <pubDate>Sun, 16 Aug 2026 21:35:00 UTC</pubDate>
+      <pubDate>Sun, 16 Aug 2026 22:54:00 UTC</pubDate>
       <geo:lat>0.0</geo:lat>
       <geo:long>0.0</geo:long>
       <content:encoded><![CDATA[
       <p>
-      Time: 08/16/26 21:35:00<br/>
-        Outside Temperature: 32.7&#176;F<br/>
+      Time: 08/16/26 22:54:00<br/>
+        Outside Temperature: 32.6&#176;F<br/>
         Inside Temperature: 63.0&#176;F<br/>
         Barometer: 31.100 inHg<br/>
         Wind: 0 mph from 360&#176;;
         Rain: 0.00 in<br/>
         Rain Rate: 0.00 in/h<br/>
-        Wind Chill: 32.7&#176;F<br/>
-        Heat Index: 32.7&#176;F<br/>
-        Dew Point: 27.2&#176;F<br/>
+        Wind Chill: 32.6&#176;F<br/>
+        Heat Index: 32.6&#176;F<br/>
+        Dew Point: 27.1&#176;F<br/>
         Outside Humidity: 80%<br/>
         Inside Humidity: 30%<br/>
       </p>
@@ -55,157 +55,157 @@
     </item>
 
     <item>
-      <title>Daily summary as of 08/16/26 21:35:00</title>
+      <title>Daily summary as of 08/16/26 22:54:00</title>
       <link></link>
       <description>
-        Min Outside Temperature: 32.6&#176;F at 21:34:58;
+        Min Outside Temperature: 32.0&#176;F at 22:24:59;
         Max Outside Temperature: 32.7&#176;F at 21:34:18;
         Min Inside Temperature: 63.0&#176;F at 21:34:18;
-        Max Inside Temperature: 63.0&#176;F at 21:34:58;
-        Min Barometer: 31.100 inHg at 21:34:58;
+        Max Inside Temperature: 63.0&#176;F at 22:24:59;
+        Min Barometer: 31.099 inHg at 22:24:59;
         Max Barometer: 31.100 inHg at 21:34:18;
-        Max Wind: 0 mph from 360&#176; at 21:34:58;
+        Max Wind: 0 mph from 360&#176; at 22:24:59;
         Rain: 0.00 in;
         Max Rain Rate: 0.00 in/h;
-        Min Wind Chill: 32.6&#176;F at 21:34:58;
+        Min Wind Chill: 32.0&#176;F at 22:24:59;
         Max Wind Chill: 32.7&#176;F at 21:34:18;
-        Min Heat Index: 32.6&#176;F at 21:34:58;
+        Min Heat Index: 32.0&#176;F at 22:24:59;
         Max Heat Index: 32.7&#176;F at 21:34:18;
-        Min Dew Point: 27.2&#176;F at 21:34:58;
+        Min Dew Point: 26.5&#176;F at 22:24:59;
         Max Dew Point: 27.2&#176;F at 21:34:18;
-        Min Outside Humidity: 80% at 21:34:58;
+        Min Outside Humidity: 80% at 22:24:59;
         Max Outside Humidity: 80% at 21:34:18;
-        Min Inside Humidity: 30% at 21:34:58;
+        Min Inside Humidity: 30% at 22:24:59;
         Max Inside Humidity: 30% at 21:34:18;
       </description>
-      <pubDate>Sun, 16 Aug 2026 21:35:00 UTC</pubDate>
+      <pubDate>Sun, 16 Aug 2026 22:54:00 UTC</pubDate>
       <geo:lat>0.0</geo:lat>
       <geo:long>0.0</geo:long>
       <content:encoded><![CDATA[
       <p>
       Daily summary as of 16 Aug 2026<br/>
-        Min Outside Temperature: 32.6&#176;F at 21:34:58<br/>
+        Min Outside Temperature: 32.0&#176;F at 22:24:59<br/>
         Max Outside Temperature: 32.7&#176;F at 21:34:18<br/>
         Min Inside Temperature: 63.0&#176;F at 21:34:18<br/>
-        Max Inside Temperature: 63.0&#176;F at 21:34:58<br/>
-        Min Barometer: 31.100 inHg at 21:34:58<br/>
+        Max Inside Temperature: 63.0&#176;F at 22:24:59<br/>
+        Min Barometer: 31.099 inHg at 22:24:59<br/>
         Max Barometer: 31.100 inHg at 21:34:18<br/>
-        Max Wind: 0 mph from 360&#176; at 21:34:58<br/>
+        Max Wind: 0 mph from 360&#176; at 22:24:59<br/>
         Rain: 0.00 in<br/>
         Max Rain Rate: 0.00 in/h<br/>
-        Min Wind Chill: 32.6&#176;F at 21:34:58<br/>
+        Min Wind Chill: 32.0&#176;F at 22:24:59<br/>
         Max Wind Chill: 32.7&#176;F at 21:34:18<br/>
-        Min Heat Index: 32.6&#176;F at 21:34:58<br/>
+        Min Heat Index: 32.0&#176;F at 22:24:59<br/>
         Max Heat Index: 32.7&#176;F at 21:34:18<br/>
-        Min Dew Point: 27.2&#176;F at 21:34:58<br/>
+        Min Dew Point: 26.5&#176;F at 22:24:59<br/>
         Max Dew Point: 27.2&#176;F at 21:34:18<br/>
-        Min Outside Humidity: 80% at 21:34:58<br/>
+        Min Outside Humidity: 80% at 22:24:59<br/>
         Max Outside Humidity: 80% at 21:34:18<br/>
-        Min Inside Humidity: 30% at 21:34:58<br/>
+        Min Inside Humidity: 30% at 22:24:59<br/>
         Max Inside Humidity: 30% at 21:34:18<br/>
       </p>
       ]]></content:encoded>
     </item>
     <item>
-      <title>Monthly summary as of 08/16/26 21:35:00</title>
+      <title>Monthly summary as of 08/16/26 22:54:00</title>
       <link></link>
       <description>
-        Min Outside Temperature: 32.6&#176;F at 08/16/26 21:34:58;
+        Min Outside Temperature: 32.0&#176;F at 08/16/26 22:24:59;
         Max Outside Temperature: 32.7&#176;F at 08/16/26 21:34:18;
         Min Inside Temperature: 63.0&#176;F at 08/16/26 21:34:18;
-        Max Inside Temperature: 63.0&#176;F at 08/16/26 21:34:58;
-        Min Barometer: 31.100 inHg at 08/16/26 21:34:58;
+        Max Inside Temperature: 63.0&#176;F at 08/16/26 22:24:59;
+        Min Barometer: 31.099 inHg at 08/16/26 22:24:59;
         Max Barometer: 31.100 inHg at 08/16/26 21:34:18;
-        Max Wind: 0 mph from 360&#176; at 08/16/26 21:34:58;
+        Max Wind: 0 mph from 360&#176; at 08/16/26 22:24:59;
         Rain: 0.00 in;
         Max Rain Rate: 0.00 in/h;
-        Min Wind Chill: 32.6&#176;F at 08/16/26 21:34:58;
+        Min Wind Chill: 32.0&#176;F at 08/16/26 22:24:59;
         Max Wind Chill: 32.7&#176;F at 08/16/26 21:34:18;
-        Min Heat Index: 32.6&#176;F at 08/16/26 21:34:58;
+        Min Heat Index: 32.0&#176;F at 08/16/26 22:24:59;
         Max Heat Index: 32.7&#176;F at 08/16/26 21:34:18;
-        Min Dew Point: 27.2&#176;F at 08/16/26 21:34:58;
+        Min Dew Point: 26.5&#176;F at 08/16/26 22:24:59;
         Max Dew Point: 27.2&#176;F at 08/16/26 21:34:18;
-        Min Outside Humidity: 80% at 08/16/26 21:34:58;
+        Min Outside Humidity: 80% at 08/16/26 22:24:59;
         Max Outside Humidity: 80% at 08/16/26 21:34:18;
-        Min Inside Humidity: 30% at 08/16/26 21:34:58;
+        Min Inside Humidity: 30% at 08/16/26 22:24:59;
         Max Inside Humidity: 30% at 08/16/26 21:34:18;
       </description>
-      <pubDate>Sun, 16 Aug 2026 21:35:00 UTC</pubDate>
+      <pubDate>Sun, 16 Aug 2026 22:54:00 UTC</pubDate>
       <geo:lat>0.0</geo:lat>
       <geo:long>0.0</geo:long>
       <content:encoded><![CDATA[
       <p>
       Monthly summary as of 01 Aug 2026<br/>
-        Min Outside Temperature: 32.6&#176;F at 08/16/26 21:34:58<br/>
+        Min Outside Temperature: 32.0&#176;F at 08/16/26 22:24:59<br/>
         Max Outside Temperature: 32.7&#176;F at 08/16/26 21:34:18<br/>
         Min Inside Temperature: 63.0&#176;F at 08/16/26 21:34:18<br/>
-        Max Inside Temperature: 63.0&#176;F at 08/16/26 21:34:58<br/>
-        Min Barometer: 31.100 inHg at 08/16/26 21:34:58<br/>
+        Max Inside Temperature: 63.0&#176;F at 08/16/26 22:24:59<br/>
+        Min Barometer: 31.099 inHg at 08/16/26 22:24:59<br/>
         Max Barometer: 31.100 inHg at 08/16/26 21:34:18<br/>
-        Max Wind: 0 mph from 360&#176; at 08/16/26 21:34:58<br/>
+        Max Wind: 0 mph from 360&#176; at 08/16/26 22:24:59<br/>
         Rain: 0.00 in<br/>
         Max Rain Rate: 0.00 in/h<br/>
-        Min Wind Chill: 32.6&#176;F at 08/16/26 21:34:58<br/>
+        Min Wind Chill: 32.0&#176;F at 08/16/26 22:24:59<br/>
         Max Wind Chill: 32.7&#176;F at 08/16/26 21:34:18<br/>
-        Min Heat Index: 32.6&#176;F at 08/16/26 21:34:58<br/>
+        Min Heat Index: 32.0&#176;F at 08/16/26 22:24:59<br/>
         Max Heat Index: 32.7&#176;F at 08/16/26 21:34:18<br/>
-        Min Dew Point: 27.2&#176;F at 08/16/26 21:34:58<br/>
+        Min Dew Point: 26.5&#176;F at 08/16/26 22:24:59<br/>
         Max Dew Point: 27.2&#176;F at 08/16/26 21:34:18<br/>
-        Min Outside Humidity: 80% at 08/16/26 21:34:58<br/>
+        Min Outside Humidity: 80% at 08/16/26 22:24:59<br/>
         Max Outside Humidity: 80% at 08/16/26 21:34:18<br/>
-        Min Inside Humidity: 30% at 08/16/26 21:34:58<br/>
+        Min Inside Humidity: 30% at 08/16/26 22:24:59<br/>
         Max Inside Humidity: 30% at 08/16/26 21:34:18<br/>
       </p>
       ]]></content:encoded>
     </item>
     <item>
-      <title>Yearly summary as of 08/16/26 21:35:00</title>
+      <title>Yearly summary as of 08/16/26 22:54:00</title>
       <link></link>
       <description>
-        Min Outside Temperature: 32.6&#176;F at 08/16/26 21:34:58;
+        Min Outside Temperature: 32.0&#176;F at 08/16/26 22:24:59;
         Max Outside Temperature: 32.7&#176;F at 08/16/26 21:34:18;
         Min Inside Temperature: 63.0&#176;F at 08/16/26 21:34:18;
-        Max Inside Temperature: 63.0&#176;F at 08/16/26 21:34:58;
-        Min Barometer: 31.100 inHg at 08/16/26 21:34:58;
+        Max Inside Temperature: 63.0&#176;F at 08/16/26 22:24:59;
+        Min Barometer: 31.099 inHg at 08/16/26 22:24:59;
         Max Barometer: 31.100 inHg at 08/16/26 21:34:18;
-        Max Wind: 0 mph from 360&#176; at 08/16/26 21:34:58;
+        Max Wind: 0 mph from 360&#176; at 08/16/26 22:24:59;
         Rain: 0.00 in;
         Max Rain Rate: 0.00 in/h;
-        Min Wind Chill: 32.6&#176;F at 08/16/26 21:34:58;
+        Min Wind Chill: 32.0&#176;F at 08/16/26 22:24:59;
         Max Wind Chill: 32.7&#176;F at 08/16/26 21:34:18;
-        Min Heat Index: 32.6&#176;F at 08/16/26 21:34:58;
+        Min Heat Index: 32.0&#176;F at 08/16/26 22:24:59;
         Max Heat Index: 32.7&#176;F at 08/16/26 21:34:18;
-        Min Dew Point: 27.2&#176;F at 08/16/26 21:34:58;
+        Min Dew Point: 26.5&#176;F at 08/16/26 22:24:59;
         Max Dew Point: 27.2&#176;F at 08/16/26 21:34:18;
-        Min Outside Humidity: 80% at 08/16/26 21:34:58;
+        Min Outside Humidity: 80% at 08/16/26 22:24:59;
         Max Outside Humidity: 80% at 08/16/26 21:34:18;
-        Min Inside Humidity: 30% at 08/16/26 21:34:58;
+        Min Inside Humidity: 30% at 08/16/26 22:24:59;
         Max Inside Humidity: 30% at 08/16/26 21:34:18;
       </description>
-      <pubDate>Sun, 16 Aug 2026 21:35:00 UTC</pubDate>
+      <pubDate>Sun, 16 Aug 2026 22:54:00 UTC</pubDate>
       <geo:lat>0.0</geo:lat>
       <geo:long>0.0</geo:long>
       <content:encoded><![CDATA[
       <p>
       Yearly summary as of 01 Jan 2026<br/>
-        Min Outside Temperature: 32.6&#176;F at 08/16/26 21:34:58<br/>
+        Min Outside Temperature: 32.0&#176;F at 08/16/26 22:24:59<br/>
         Max Outside Temperature: 32.7&#176;F at 08/16/26 21:34:18<br/>
         Min Inside Temperature: 63.0&#176;F at 08/16/26 21:34:18<br/>
-        Max Inside Temperature: 63.0&#176;F at 08/16/26 21:34:58<br/>
-        Min Barometer: 31.100 inHg at 08/16/26 21:34:58<br/>
+        Max Inside Temperature: 63.0&#176;F at 08/16/26 22:24:59<br/>
+        Min Barometer: 31.099 inHg at 08/16/26 22:24:59<br/>
         Max Barometer: 31.100 inHg at 08/16/26 21:34:18<br/>
-        Max Wind: 0 mph from 360&#176; at 08/16/26 21:34:58<br/>
+        Max Wind: 0 mph from 360&#176; at 08/16/26 22:24:59<br/>
         Rain: 0.00 in<br/>
         Max Rain Rate: 0.00 in/h<br/>
-        Min Wind Chill: 32.6&#176;F at 08/16/26 21:34:58<br/>
+        Min Wind Chill: 32.0&#176;F at 08/16/26 22:24:59<br/>
         Max Wind Chill: 32.7&#176;F at 08/16/26 21:34:18<br/>
-        Min Heat Index: 32.6&#176;F at 08/16/26 21:34:58<br/>
+        Min Heat Index: 32.0&#176;F at 08/16/26 22:24:59<br/>
         Max Heat Index: 32.7&#176;F at 08/16/26 21:34:18<br/>
-        Min Dew Point: 27.2&#176;F at 08/16/26 21:34:58<br/>
+        Min Dew Point: 26.5&#176;F at 08/16/26 22:24:59<br/>
         Max Dew Point: 27.2&#176;F at 08/16/26 21:34:18<br/>
-        Min Outside Humidity: 80% at 08/16/26 21:34:58<br/>
+        Min Outside Humidity: 80% at 08/16/26 22:24:59<br/>
         Max Outside Humidity: 80% at 08/16/26 21:34:18<br/>
-        Min Inside Humidity: 30% at 08/16/26 21:34:58<br/>
+        Min Inside Humidity: 30% at 08/16/26 22:24:59<br/>
         Max Inside Humidity: 30% at 08/16/26 21:34:18<br/>
       </p>
       ]]></content:encoded>
