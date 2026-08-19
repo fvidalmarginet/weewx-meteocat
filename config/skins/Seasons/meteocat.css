@@ -1,0 +1,122 @@
+.meteocat-widget {
+    --meteocat-ink: #263238;
+    --meteocat-muted: #71808c;
+    --meteocat-border: #e0e7eb;
+    --meteocat-accent: #2f7ea8;
+    --meteocat-soft: #eef7fb;
+    margin: 0 0 20px;
+    color: var(--meteocat-ink);
+    background: #ffffff;
+    border: 1px solid var(--meteocat-border);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 3px 12px rgba(38, 50, 56, 0.08);
+}
+
+.meteocat-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding: 16px 20px 12px;
+    border-bottom: 1px solid var(--meteocat-border);
+}
+
+.meteocat-source {
+    color: var(--meteocat-accent);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+}
+
+.meteocat-header h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.meteocat-forecast {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(108px, 1fr));
+    gap: 8px;
+    padding: 12px;
+}
+
+.meteocat-day {
+    min-width: 0;
+    padding: 12px 8px 14px;
+    text-align: center;
+    border: 1px solid transparent;
+    border-radius: 6px;
+}
+
+.meteocat-day-today {
+    background: var(--meteocat-soft);
+    border-color: #c9e4f0;
+}
+
+.meteocat-day-name {
+    min-height: 16px;
+    color: var(--meteocat-muted);
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.meteocat-date {
+    margin-top: 3px;
+    color: var(--meteocat-muted);
+    font-size: 12px;
+}
+
+.meteocat-day img {
+    display: block;
+    width: 56px;
+    height: 48px;
+    margin: 12px auto 8px;
+}
+
+.meteocat-temperatures {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    font-size: 17px;
+}
+
+.meteocat-temperatures span {
+    color: var(--meteocat-muted);
+    font-weight: 400;
+}
+
+.meteocat-description {
+    min-height: 30px;
+    margin-top: 7px;
+    color: var(--meteocat-muted);
+    font-size: 11px;
+    line-height: 15px;
+}
+
+.meteocat-rain {
+    margin-top: 9px;
+    color: var(--meteocat-accent);
+    font-size: 11px;
+}
+
+.meteocat-footer {
+    padding: 10px 20px;
+    color: var(--meteocat-muted);
+    font-size: 11px;
+    border-top: 1px solid var(--meteocat-border);
+}
+
+@media (max-width: 520px) {
+    .meteocat-header {
+        display: block;
+    }
+
+    .meteocat-header h3 {
+        margin-top: 4px;
+    }
+
+    .meteocat-forecast {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}

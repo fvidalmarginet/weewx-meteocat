@@ -1,15 +1,23 @@
-<div class="meteocat-forecast">
-  <h3>Predicció Municipal (Meteocat)</h3>
-  <p><small>Actualitzat: $meteocat.updatedAt</small></p>
-  <div class="forecast-days" style="display: flex; gap: 15px;">
+<section class="meteocat-widget" aria-label="Predicció meteorològica">
+  <header class="meteocat-header">
+    <div class="meteocat-source">METEOCAT</div>
+    <h3>Predicció municipal</h3>
+  </header>
+  <div class="meteocat-forecast">
     #for $day in $meteocat.forecast
-    <div class="forecast-day" style="text-align: center; border: 1px solid #ccc; padding: 10px; border-radius: 5px;">
-      <h4>$day.date</h4>
-      <i class="wi $day.icon_class" style="font-size: 2em;"></i>
-      <p><strong>Max:</strong> $day.max_tempºC</p>
-      <p><strong>Min:</strong> $day.min_tempºC</p>
-      <p><strong>Pluja:</strong> $day.rain_percent%</p>
-    </div>
+    #set $day_class = "meteocat-day"
+    #if $day.get('day_name', '') == "AVUI"
+      #set $day_class = "meteocat-day meteocat-day-today"
+    #end if
+    <article class="$day_class">
+      <div class="meteocat-day-name">$day.get('day_name', '')</div>
+      <div class="meteocat-date">$day.date</div>
+      <img src="weather-icons/$day.icon_class" alt="$day.sky_code" width="56" height="48" />
+      <div class="meteocat-temperatures"><strong>$day.max_temp&#176;</strong><span>$day.min_temp&#176;</span></div>
+      <div class="meteocat-description">$day.get('description', 'Condicions variables')</div>
+      <div class="meteocat-rain">Pluja $day.rain_percent%</div>
+    </article>
     #end for
   </div>
-</div>
+  <footer class="meteocat-footer">Actualitzat: $meteocat.updatedAt</footer>
+</section>

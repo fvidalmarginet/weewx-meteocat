@@ -14,7 +14,9 @@ class MeteocatInstaller(ExtensionInstaller):
                 "Meteocat": {
                     "api_key": "EL_TEU_API_KEY",
                     "city_code": "080193",
-                    "refresh_interval": "10800"
+                    "refresh_interval": "10800",
+                    "retry_interval": "300",
+                    "cache_file": "/var/lib/weewx/meteocat_cache.json"
                 },
                 "Engine": {
                     "Services": {
@@ -27,6 +29,11 @@ class MeteocatInstaller(ExtensionInstaller):
             },
             files=[
                 ('bin/user', ['src/user/meteocat.py']),
-                ('examples', ['examples/meteocat.inc'])
+                ('examples', ['examples/meteocat.inc']),
+                ('skins/Seasons/weather-icons', [
+                    'assets/weather-icons/*.svg',
+                    'assets/weather-icons/LICENSE'
+                ]),
+                ('skins/Seasons', ['config/skins/Seasons/meteocat.css'])
             ]
         )
