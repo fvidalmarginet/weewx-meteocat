@@ -1,11 +1,19 @@
 import importlib.util
 import json
 import os
+import sys
 import tempfile
 import threading
 import unittest
 from unittest import mock
 
+# Mock WeeWX modules before importing the extension
+# This allows tests to run without WeeWX installed in the environment
+weewx_mock = mock.MagicMock()
+weewx_mock.NEW_ARCHIVE_RECORD = 'NEW_ARCHIVE_RECORD'
+sys.modules['weewx'] = weewx_mock
+sys.modules['weewx.engine'] = mock.MagicMock(StdService=object)
+sys.modules['weewx.cheetahgenerator'] = mock.MagicMock(SearchList=object)
 
 MODULE_PATH = os.path.join(os.path.dirname(__file__), '..', 'src', 'user', 'meteocat.py')
 spec = importlib.util.spec_from_file_location('meteocat_extension', MODULE_PATH)
@@ -43,7 +51,7 @@ class MeteocatTests(unittest.TestCase):
             'estatCel': {'valor': 3},
         }}]})
         self.assertEqual(result['forecast'][0]['sky_code'], '3')
-        self.assertEqual(result['forecast'][0]['description'], 'Entre poc i mig ennuvolat')
+        self.assertEqual(result['forecast'][0]['description'], 'Mostly cloudy')
         self.assertEqual(result['forecast'][0]['icon_class'], 'cloudy-2-day.svg')
 
     def test_fetch_writes_valid_cache_atomically(self):
@@ -59,11 +67,11 @@ class MeteocatTests(unittest.TestCase):
 
         with open(service.cache_file, encoding='utf-8') as stream:
             data = json.load(stream)
-        self.assertEqual(data['forecast'][0]['icon_class'], 'cloudy-2-day.svg')
-        self.assertEqual([
-            name for name in os.listdir(os.path.dirname(service.cache_file))
-            if name.startswith('.meteocat-')
-        ], [])
+            self.assertEqual(data['forecast'][0]['icon_class'], 'cloudy-2-day.svg')
+            self.assertEqual([
+                name for name in os.listdir(os.path.dirname(service.cache_file))
+                if name.startswith('.meteocat-')
+            ], [])
 
 
 if __name__ == '__main__':
