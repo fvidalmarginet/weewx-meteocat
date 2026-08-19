@@ -8,7 +8,7 @@ class MeteocatInstaller(ExtensionInstaller):
         super(MeteocatInstaller, self).__init__(
             version="1.0.0",
             name="weewx-meteocat",
-            description="Integracio de la prediccio municipal de Meteocat per a skins de WeeWX.",
+            description="Municipal Meteocat forecast integration for WeeWX skins.",
             author="Vidal Marginet",
             config={
                 "Meteocat": {

@@ -5,7 +5,6 @@ import tempfile
 import time
 from datetime import datetime
 import urllib.request
-import urllib.error
 import threading
 import weewx
 from weewx.engine import StdService
@@ -19,7 +18,7 @@ class MeteocatService(StdService):
     def __init__(self, engine, config_dict):
         super(MeteocatService, self).__init__(engine, config_dict)
         
-        # Carregar configuració de [Meteocat] a weewx.conf
+        # Load the [Meteocat] section from weewx.conf.
         self.options = config_dict.get('Meteocat', {})
         self.api_key = self.options.get('api_key', '')
         self.city_code = self.options.get('city_code', '')
@@ -30,16 +29,16 @@ class MeteocatService(StdService):
         
         self.bind(weewx.NEW_ARCHIVE_RECORD, self.on_archive_record)
         self.last_fetch = 0
-        log.info("[Meteocat] Servei inicialitzat correctament.")
+        log.info("[Meteocat] Service initialized successfully.")
 
-        # Executar la descàrrega inicial immediatament en arrencar
+        # Start the initial download immediately after startup.
         self._trigger_fetch()
 
     def _trigger_fetch(self):
         if not self._fetch_lock.acquire(blocking=False):
             return
         self.last_fetch = time.time()
-        log.info("[Meteocat] Sol·licitant actualització de dades en segon pla...")
+        log.info("[Meteocat] Requesting background forecast update...")
         thread = threading.Thread(target=self._fetch_and_cache)
         thread.daemon = True
         thread.start()
@@ -54,14 +53,14 @@ class MeteocatService(StdService):
         now = time.time()
         if (now - self.last_fetch > self.refresh_interval) or not os.path.exists(self.cache_file):
             self.last_fetch = now
-            log.info("[Meteocat] Sol·licitant actualització de dades en segon pla...")
+            log.info("[Meteocat] Requesting background forecast update...")
             thread = threading.Thread(target=self._fetch_and_cache)
             thread.daemon = True
             thread.start()
 
     def _fetch_and_cache(self):
         if not self.api_key or not self.city_code:
-            log.error("[Meteocat] Falta configurar api_key o city_code a weewx.conf")
+            log.error("[Meteocat] api_key and city_code must be configured in weewx.conf")
             return
 
         url = f"https://api.meteo.cat/pronostic/v1/municipal/{self.city_code}"
@@ -81,19 +80,19 @@ class MeteocatService(StdService):
                         json.dump(processed_data, f, ensure_ascii=False)
                         temporary_file = f.name
                     os.replace(temporary_file, self.cache_file)
-                    log.info("[Meteocat] Cache actualitzada amb èxit al disc.")
+                    log.info("[Meteocat] Cache updated successfully.")
         except Exception as e:
-            log.error(f"[Meteocat] Error al consultar l'API de Meteocat: {e}")
+            log.error(f"[Meteocat] Meteocat API request failed: {e}")
         finally:
             self._fetch_lock.release()
 
     def _process_meteocat(self, raw):
-        # Mapeig i simplificació del JSON de Meteocat
+        # Normalize the Meteocat JSON response for template use.
         days_forecast = []
         today = time.strftime("%Y-%m-%d")
-        for dies in raw.get('dies', []):
-            sky_code = self._extract_sky_code(dies.get('variables', {}))
-            date = str(dies.get('data', '')).rstrip('Z')
+        for day_data in raw.get('dies', []):
+            sky_code = self._extract_sky_code(day_data.get('variables', {}))
+            date = str(day_data.get('data', '')).rstrip('Z')
             try:
                 parsed_date = datetime.strptime(date, "%Y-%m-%d")
                 date_label = parsed_date.strftime("%d/%m")
@@ -108,9 +107,9 @@ class MeteocatService(StdService):
                 "sky_code": str(sky_code),
                 "icon_class": self._map_sky_to_icon(sky_code),
                 "description": self._map_sky_to_description(sky_code),
-                "max_temp": dies.get('variables', {}).get('tmax', {}).get('valor'),
-                "min_temp": dies.get('variables', {}).get('tmin', {}).get('valor'),
-                "rain_percent": dies.get('variables', {}).get('precipitacio', {}).get('valor', 0)
+                "max_temp": day_data.get('variables', {}).get('tmax', {}).get('valor'),
+                "min_temp": day_data.get('variables', {}).get('tmin', {}).get('valor'),
+                "rain_percent": day_data.get('variables', {}).get('precipitacio', {}).get('valor', 0)
             })
 
         return {
@@ -119,9 +118,9 @@ class MeteocatService(StdService):
         }
 
     def _extract_sky_code(self, variables):
-        estat_cel = variables.get('estatCel', {})
-        if 'valor' in estat_cel:
-            return estat_cel['valor']
+        sky_state = variables.get('estatCel', {})
+        if 'valor' in sky_state:
+            return sky_state['valor']
         legacy_values = variables.get('estatCels', {}).get('valors', [{}])
         return legacy_values[0].get('codi', '0')
 
@@ -187,6 +186,6 @@ class MeteocatSearchList(weewx.cheetah.SearchList):
                     day.setdefault('day_name', '')
                     day.setdefault('description', 'Condicions variables')
             except Exception as e:
-                log.error(f"[Meteocat] Error llegint cache local: {e}")
+                log.error(f"[Meteocat] Error reading local cache: {e}")
                 
         return [{'meteocat': data}]
