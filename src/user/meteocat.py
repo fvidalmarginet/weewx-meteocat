@@ -12,12 +12,15 @@ import weewx.cheetahgenerator
 
 log = logging.getLogger(__name__)
 
-DEFAULT_CACHE_FILE = "/var/lib/weewx/meteocat_cache.json"
+DEFAULT_CACHE_FILE = "meteocat_cache.json"
+
 
 class MeteocatService(StdService):
+    """Background service that fetches and caches the Meteocat municipal forecast."""
+
     def __init__(self, engine, config_dict):
         super(MeteocatService, self).__init__(engine, config_dict)
-        
+
         self.options = config_dict.get('Meteocat', {})
         self.api_key = self.options.get('api_key', '')
         self.city_code = self.options.get('city_code', '')
@@ -25,7 +28,7 @@ class MeteocatService(StdService):
         self.retry_interval = int(self.options.get('retry_interval', 300))
         self.cache_file = self.options.get('cache_file', DEFAULT_CACHE_FILE)
         self._fetch_lock = threading.Lock()
-        
+
         self.bind(weewx.NEW_ARCHIVE_RECORD, self.on_archive_record)
         self.last_fetch = 0
         log.info("[Meteocat] Service initialized successfully.")
@@ -35,7 +38,6 @@ class MeteocatService(StdService):
     def _trigger_fetch(self):
         if not self._fetch_lock.acquire(blocking=False):
             return
-        self.last_fetch = time.time()
         log.info("[Meteocat] Requesting background forecast update...")
         thread = threading.Thread(target=self._fetch_and_cache)
         thread.daemon = True
@@ -48,19 +50,19 @@ class MeteocatService(StdService):
             self._trigger_fetch()
 
     def _fetch_and_cache(self):
-        if not self.api_key or not self.city_code or self.api_key == "EL_TEU_API_KEY":
-            log.error("[Meteocat] A valid api_key and city_code must be configured in weewx.conf")
-            return
-
-        url = f"https://api.meteo.cat/pronostic/v1/municipal/{self.city_code}"
-        req = urllib.request.Request(url, headers={"X-Api-Key": self.api_key})
-        
         try:
-            with urllib.request.urlopen(req, timeout=10) as response:
+            if not self.api_key or not self.city_code or self.api_key == "YOUR_API_KEY":
+                log.error("[Meteocat] A valid api_key and city_code must be configured in weewx.conf")
+                return
+
+            url = f"https://api.meteo.cat/pronostic/v1/municipal/{self.city_code}"
+            req = urllib.request.Request(url, headers={"X-Api-Key": self.api_key})
+
+            with urllib.request.urlopen(req, timeout=30) as response:
                 if response.status == 200:
                     raw_data = json.loads(response.read().decode('utf-8'))
                     processed_data = self._process_meteocat(raw_data)
-                    
+
                     cache_dir = os.path.dirname(self.cache_file) or "."
                     os.makedirs(cache_dir, exist_ok=True)
                     with tempfile.NamedTemporaryFile(
@@ -69,6 +71,7 @@ class MeteocatService(StdService):
                         json.dump(processed_data, f, ensure_ascii=False, indent=2)
                         temporary_file = f.name
                     os.replace(temporary_file, self.cache_file)
+                    self.last_fetch = time.time()
                     log.info("[Meteocat] Cache updated successfully.")
         except Exception as e:
             log.error(f"[Meteocat] Meteocat API request failed: {e}")
@@ -84,19 +87,22 @@ class MeteocatService(StdService):
             try:
                 parsed_date = datetime.strptime(date, "%Y-%m-%d")
                 date_label = parsed_date.strftime("%d/%m")
-                day_name = "AVUI" if date == today else self._day_name(parsed_date.weekday())
+                day_name = "Today" if date == today else self._day_name(parsed_date.weekday())
             except ValueError:
                 date_label = date
                 day_name = ""
-            
+
+            max_temp = day_data.get('variables', {}).get('tmax', {}).get('valor')
+            min_temp = day_data.get('variables', {}).get('tmin', {}).get('valor')
+
             days_forecast.append({
                 "date": date_label,
                 "day_name": day_name,
                 "sky_code": str(sky_code),
                 "icon_class": self._map_sky_to_icon(sky_code),
                 "description": self._map_sky_to_description(sky_code),
-                "max_temp": day_data.get('variables', {}).get('tmax', {}).get('valor'),
-                "min_temp": day_data.get('variables', {}).get('tmin', {}).get('valor'),
+                "max_temp": max_temp if max_temp is not None else "N/A",
+                "min_temp": min_temp if min_temp is not None else "N/A",
                 "rain_percent": day_data.get('variables', {}).get('precipitacio', {}).get('valor', 0)
             })
 
@@ -113,28 +119,29 @@ class MeteocatService(StdService):
         return legacy_values[0].get('codi', '0')
 
     def _day_name(self, weekday):
-        return ("DILLUNS", "DIMARTS", "DIMECRES", "DIJOUS", "DIVENDRES", "DISSABTE", "DIUMENGE")[weekday]
+        return ("Monday", "Tuesday", "Wednesday", "Thursday",
+                "Friday", "Saturday", "Sunday")[weekday]
 
     def _map_sky_to_description(self, code):
         mapping = {
-            "1": "Cel serè",
-            "2": "Poc ennuvolat",
-            "3": "Entre poc i mig ennuvolat",
-            "4": "Entre mig i molt ennuvolat",
-            "5": "Molt ennuvolat",
-            "6": "Cobert",
-            "20": "Pluja",
-            "21": "Pluja feble",
-            "22": "Pluja moderada",
-            "23": "Pluja forta",
-            "24": "Ruixats",
-            "25": "Tempesta",
-            "26": "Neu",
-            "27": "Aiguaneu",
-            "28": "Calamarsa",
-            "29": "Boira",
+            "1": "Clear sky",
+            "2": "Partly cloudy",
+            "3": "Mostly cloudy",
+            "4": "Overcast",
+            "5": "Very cloudy",
+            "6": "Covered",
+            "20": "Rain",
+            "21": "Light rain",
+            "22": "Moderate rain",
+            "23": "Heavy rain",
+            "24": "Showers",
+            "25": "Thunderstorms",
+            "26": "Snow",
+            "27": "Sleet",
+            "28": "Hail",
+            "29": "Fog",
         }
-        return mapping.get(str(code), "Condicions variables")
+        return mapping.get(str(code), "Variable conditions")
 
     def _map_sky_to_icon(self, code):
         mapping = {
@@ -159,6 +166,8 @@ class MeteocatService(StdService):
 
 
 class MeteocatSearchList(weewx.cheetahgenerator.SearchList):
+    """Exposes the cached Meteocat forecast to Cheetah templates as $meteocat."""
+
     def __init__(self, generator):
         super(MeteocatSearchList, self).__init__(generator)
         options = getattr(generator, 'config_dict', {}).get('Meteocat', {})
@@ -172,8 +181,8 @@ class MeteocatSearchList(weewx.cheetahgenerator.SearchList):
                     data = json.load(f)
                 for day in data.get('forecast', []):
                     day.setdefault('day_name', '')
-                    day.setdefault('description', 'Condicions variables')
+                    day.setdefault('description', 'Variable conditions')
             except Exception as e:
                 log.error(f"[Meteocat] Error reading local cache: {e}")
-                
+
         return [{'meteocat': data}]
