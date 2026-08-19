@@ -1,16 +1,29 @@
-# Output i desenvolupament local
-output/
-config/weewx.conf
-*.pyc
+# Python
 __pycache__/
-.DS_Store
+*.pyc
+*.pyo
+*.egg-info/
+.venv/
+venv/
 
-# Cache de WeeWX
+# Entorn de desenvolupament
+.DS_Store
+output/
+
+# Tests i cobertura
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Dades i cachés locals de WeeWX
 *.json
 !tests/mock_response.json
+config/*.sdb
+config/weewx.conf*
 
-output/
-config/meteocat_cache.json
-config/weewx.sdb
-__pycache__/
-*.pyc
+# Defensiu: evitar que torni a pujar-se una còpia sencera d'instal·lació WeeWX
+config/archive/
+config/bin/
+config/public_html/
+config/scripts/
+config/util/
