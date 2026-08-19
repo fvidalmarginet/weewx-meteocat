@@ -27,7 +27,7 @@ class FakeResponse:
             'dies': [{
                 'data': '2026-08-19Z',
                 'variables': {
-                    'estatCels': {'valors': [{'codi': 8}]},
+                    'estatCel': {'valor': 3},
                     'tmax': {'valor': '30'},
                     'tmin': {'valor': '20'},
                     'precipitacio': {'valor': '25'},
@@ -37,12 +37,14 @@ class FakeResponse:
 
 
 class MeteocatTests(unittest.TestCase):
-    def test_process_maps_extended_sky_codes(self):
+    def test_processes_real_meteocat_sky_schema(self):
         service = meteocat.MeteocatService.__new__(meteocat.MeteocatService)
         result = service._process_meteocat({'dies': [{'variables': {
-            'estatCels': {'valors': [{'codi': 8}]},
+            'estatCel': {'valor': 3},
         }}]})
-        self.assertEqual(result['forecast'][0]['icon_class'], 'thunderstorms.svg')
+        self.assertEqual(result['forecast'][0]['sky_code'], '3')
+        self.assertEqual(result['forecast'][0]['description'], 'Entre poc i mig ennuvolat')
+        self.assertEqual(result['forecast'][0]['icon_class'], 'cloudy-2-day.svg')
 
     def test_fetch_writes_valid_cache_atomically(self):
         service = meteocat.MeteocatService.__new__(meteocat.MeteocatService)
@@ -57,7 +59,7 @@ class MeteocatTests(unittest.TestCase):
 
         with open(service.cache_file, encoding='utf-8') as stream:
             data = json.load(stream)
-        self.assertEqual(data['forecast'][0]['icon_class'], 'thunderstorms.svg')
+        self.assertEqual(data['forecast'][0]['icon_class'], 'cloudy-2-day.svg')
         self.assertEqual([
             name for name in os.listdir(os.path.dirname(service.cache_file))
             if name.startswith('.meteocat-')

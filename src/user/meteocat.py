@@ -80,7 +80,7 @@ class MeteocatService(StdService):
         days_forecast = []
         today = time.strftime("%Y-%m-%d")
         for dies in raw.get('dies', []):
-            sky_code = dies.get('variables', {}).get('estatCels', {}).get('valors', [{}])[0].get('codi', '1')
+            sky_code = self._extract_sky_code(dies.get('variables', {}))
             date = str(dies.get('data', '')).rstrip('Z')
             try:
                 parsed_date = datetime.strptime(date, "%Y-%m-%d")
@@ -106,6 +106,13 @@ class MeteocatService(StdService):
             "forecast": days_forecast
         }
 
+    def _extract_sky_code(self, variables):
+        estat_cel = variables.get('estatCel', {})
+        if 'valor' in estat_cel:
+            return estat_cel['valor']
+        legacy_values = variables.get('estatCels', {}).get('valors', [{}])
+        return legacy_values[0].get('codi', '0')
+
     def _day_name(self, weekday):
         return ("DILLUNS", "DIMARTS", "DIMECRES", "DIJOUS", "DIVENDRES", "DISSABTE", "DIUMENGE")[weekday]
 
@@ -113,13 +120,20 @@ class MeteocatService(StdService):
         mapping = {
             "1": "Cel serè",
             "2": "Poc ennuvolat",
-            "3": "Parcialment ennuvolat",
-            "4": "Ennuvolat",
-            "5": "Pluja",
-            "6": "Pluja i aiguaneu",
-            "7": "Neu",
-            "8": "Tempesta",
-            "9": "Boira",
+            "3": "Entre poc i mig ennuvolat",
+            "4": "Entre mig i molt ennuvolat",
+            "5": "Molt ennuvolat",
+            "6": "Cobert",
+            "20": "Pluja",
+            "21": "Pluja feble",
+            "22": "Pluja moderada",
+            "23": "Pluja forta",
+            "24": "Ruixats",
+            "25": "Tempesta",
+            "26": "Neu",
+            "27": "Aiguaneu",
+            "28": "Calamarsa",
+            "29": "Boira",
         }
         return mapping.get(str(code), "Condicions variables")
 
@@ -128,12 +142,19 @@ class MeteocatService(StdService):
             "1": "clear-day.svg",
             "2": "cloudy-1-day.svg",
             "3": "cloudy-2-day.svg",
-            "4": "cloudy.svg",
-            "5": "rainy-1-day.svg",
-            "6": "rain-and-sleet-mix.svg",
-            "7": "snowy-1-day.svg",
-            "8": "thunderstorms.svg",
-            "9": "fog.svg",
+            "4": "cloudy-3-day.svg",
+            "5": "cloudy.svg",
+            "6": "cloudy.svg",
+            "20": "rainy-1-day.svg",
+            "21": "rainy-1-day.svg",
+            "22": "rainy-2-day.svg",
+            "23": "rainy-3-day.svg",
+            "24": "rainy-2-day.svg",
+            "25": "thunderstorms.svg",
+            "26": "snowy-1-day.svg",
+            "27": "rain-and-snow-mix.svg",
+            "28": "hail.svg",
+            "29": "fog.svg",
         }
         return mapping.get(str(code), "cloudy.svg")
 
@@ -150,6 +171,9 @@ class MeteocatSearchList(weewx.cheetahgenerator.SearchList):
             try:
                 with open(self.cache_file, 'r', encoding='utf-8') as f:
                     data = json.load(f)
+                for day in data.get('forecast', []):
+                    day.setdefault('day_name', '')
+                    day.setdefault('description', 'Condicions variables')
             except Exception as e:
                 log.error(f"[Meteocat] Error llegint cache local: {e}")
                 

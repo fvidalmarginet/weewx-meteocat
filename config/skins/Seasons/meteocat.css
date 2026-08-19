@@ -4,6 +4,12 @@
     --meteocat-border: #e0e7eb;
     --meteocat-accent: #2f7ea8;
     --meteocat-soft: #eef7fb;
+    width: 360px;
+    max-width: 100%;
+    height: 300px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
     margin: 0 0 20px;
     color: var(--meteocat-ink);
     background: #ffffff;
@@ -35,14 +41,19 @@
 }
 
 .meteocat-forecast {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(108px, 1fr));
+    display: flex;
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
     gap: 8px;
     padding: 12px;
 }
 
 .meteocat-day {
-    min-width: 0;
+    flex: 0 0 108px;
+    min-width: 108px;
+    box-sizing: border-box;
     padding: 12px 8px 14px;
     text-align: center;
     border: 1px solid transparent;
@@ -108,6 +119,10 @@
 }
 
 @media (max-width: 520px) {
+    .meteocat-widget {
+        height: 300px;
+    }
+
     .meteocat-header {
         display: block;
     }
@@ -116,7 +131,4 @@
         margin-top: 4px;
     }
 
-    .meteocat-forecast {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
 }
